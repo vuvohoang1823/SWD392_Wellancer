@@ -7,7 +7,15 @@ import 'package:wellancer/models/bottomsheet.dart';
 import 'package:provider/provider.dart';
 import 'package:wellancer/models/profileProvider.dart';
 
-void main() => runApp(MyApp());
+import 'package:wellancer/widgets/jobcontainer.dart';
+
+//firebase_cli
+// import 'package:firebase_core/firebase_core.dart';
+// import 'package:wellancer/firebase_options.dart';
+
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -30,7 +38,15 @@ class MyApp extends StatelessWidget {
         routes: {
           '/signin': (context) => SignInScreen(),
           '/main': (context) => HomeScreen(),
-          '/jobdetail': (context) => DetailsScreen(id: 0),
+          '/jobdetail': (context) => DetailsScreen(
+                id: 0,
+                title: 'Job Title', // Replace with appropriate title value
+                enterprise:
+                    'Enterprise Name', // Replace with appropriate enterprise value
+                description:
+                    'Job Description', // Replace with appropriate description value
+                initialFunding: '10000',
+              ),
           '/account': (context) => AccountScreen(),
         },
       ),

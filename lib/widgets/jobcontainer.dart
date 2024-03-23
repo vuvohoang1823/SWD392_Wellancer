@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:wellancer/screens/details.dart';
 
 class JobContainer extends StatelessWidget {
-  final String iconUrl, title, location, description, salary;
+  final String title, enterprise, description, initialFunding;
   final Function() onTap;
 
-  const JobContainer(
-      {super.key,
-      required this.iconUrl,
-      required this.title,
-      required this.location,
-      required this.description,
-      required this.salary,
-      required this.onTap});
+  const JobContainer({
+    super.key,
+    required this.title,
+    required this.enterprise,
+    required this.description,
+    required this.initialFunding,
+    required this.onTap,
+  });
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (ctx) => DetailsScreen(
+            id: 0, // Replace with the appropriate ID value
+            title: title,
+            enterprise: enterprise,
+            description: description,
+            initialFunding: initialFunding,
+          ),
+        ),
+      ),
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 5.0),
         padding: const EdgeInsets.all(15.0),
@@ -37,7 +49,7 @@ class JobContainer extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(15.0),
                   child: Image.network(
-                    "$iconUrl",
+                    "https://cdn0.iconfinder.com/data/icons/job-seeker/256/location_job_seeker_employee_unemployee_work-512.png",
                     height: 71,
                     width: 71,
                   ),
@@ -52,7 +64,7 @@ class JobContainer extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       Text(
-                        "$location",
+                        "$enterprise",
                         style: Theme.of(context).textTheme.titleSmall?.apply(
                               color: Colors.grey,
                             ),
@@ -74,7 +86,7 @@ class JobContainer extends StatelessWidget {
             ),
             SizedBox(height: 9),
             Text(
-              "$salary",
+              "${initialFunding} VND",
               style: Theme.of(context)
                   .textTheme
                   .titleMedium

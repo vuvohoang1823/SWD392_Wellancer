@@ -7,12 +7,23 @@ import 'package:wellancer/models/profile.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+
 class SignInScreen extends StatefulWidget {
   @override
   _SignInScreenState createState() => _SignInScreenState();
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  void initState() {
+    super.initState();
+    OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+    OneSignal.initialize('e832ee39-f668-45ce-9f23-d3b64e602ee5');
+    OneSignal.Notifications.requestPermission(true).then((value) {
+      print('signal value: $value');
+    });
+  }
+
   bool _showPass = false;
 
   TextEditingController _emailEditingController = new TextEditingController();

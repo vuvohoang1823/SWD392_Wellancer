@@ -3,8 +3,16 @@ import 'package:wellancer/global.dart';
 
 class DetailsScreen extends StatelessWidget {
   final int id;
+  final String title, enterprise, description, initialFunding;
 
-  const DetailsScreen({super.key, required this.id});
+  const DetailsScreen({
+    super.key,
+    required this.id,
+    required this.title,
+    required this.enterprise,
+    required this.description,
+    required this.initialFunding,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +68,11 @@ class DetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
-                        "${jobList[id].title}",
+                        "$title",
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
-                        "${jobList[id].location}",
+                        "$enterprise",
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge
@@ -78,7 +86,7 @@ class DetailsScreen extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       Text(
-                        "${jobList[id].description}",
+                        "$description",
                         style: Theme.of(context)
                             .textTheme
                             .bodyLarge
@@ -103,7 +111,25 @@ class DetailsScreen extends StatelessWidget {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.blue,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  content: Row(
+                                    children: [
+                                      Icon(
+                                        Icons.check_circle,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10),
+                                      Text("Successfully Applied"),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
                         ),
                       )
                     ],

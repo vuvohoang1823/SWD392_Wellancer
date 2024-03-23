@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wellancer/screens/home.dart';
+import 'package:wellancer/screens/profile.dart';
 import 'mybottomnavitem.dart';
 
 class MyBottomNavBar extends StatefulWidget {
@@ -7,6 +9,18 @@ class MyBottomNavBar extends StatefulWidget {
 }
 
 class _MyBottomNavBarState extends State<MyBottomNavBar> {
+  Widget goToHome(BuildContext context) {
+    return HomeScreen();
+  }
+
+  Widget goToAccount(BuildContext context) {
+    return AccountScreen();
+  }
+
+  void goToJobDetails(BuildContext context, int jobId) {
+    Navigator.pushNamed(context, '/jobdetail', arguments: jobId);
+  }
+
   int _active = 0;
   @override
   Widget build(BuildContext context) {
@@ -32,6 +46,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
               setState(() {
                 _active = 0;
               });
+              Navigator.push(context, MaterialPageRoute(builder: goToHome));
             },
             active: _active,
           ),
@@ -54,6 +69,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
               setState(() {
                 _active = 2;
               });
+              Navigator.push(context, MaterialPageRoute(builder: goToAccount));
             },
             active: _active,
           ),
